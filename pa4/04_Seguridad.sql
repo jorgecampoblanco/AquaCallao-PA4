@@ -1,0 +1,6 @@
+-- AQUACALLAO PA4 | PLANTILLA - PENDIENTE DE DESARROLLO
+-- Responsable sugerido: Farid
+-- Objetivo: Definir roles rol_pa4_consulta y rol_pa4_operador, usuarios de demostración y permisos mínimos, evidencia de autorizaciones y rechazos; nunca incluir contraseñas reales.
+-- Base existente: AquaCallao | Usar tablas dbo.Cliente, dbo.Producto, dbo.Cisterna, dbo.CargaAgua y dbo.Entrega.
+-- NO ES UNA SOLUCION TERMINADA NI HA SIDO EJECUTADA EN SSMS.
+-- Completar: definicion del objeto, casos de prueba, resultado esperado/observado y justificacion.

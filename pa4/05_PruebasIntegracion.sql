@@ -1,0 +1,6 @@
+-- AQUACALLAO PA4 | PLANTILLA - PENDIENTE DE DESARROLLO
+-- Responsable sugerido: Jorge
+-- Objetivo: Integrar pruebas del trigger, función escalar, función de tabla, cursor y permisos; documentar resultados. Evitar pruebas destructivas y comprobar transacciones.
+-- Base existente: AquaCallao | Usar tablas dbo.Cliente, dbo.Producto, dbo.Cisterna, dbo.CargaAgua y dbo.Entrega.
+-- NO ES UNA SOLUCION TERMINADA NI HA SIDO EJECUTADA EN SSMS.
+-- Completar: definicion del objeto, casos de prueba, resultado esperado/observado y justificacion.

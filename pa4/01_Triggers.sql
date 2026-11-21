@@ -1,4 +1,0 @@
--- AQUACALLAO PA4 | PLANTILLA PENDIENTE
--- Helen: registrar auditoria con trigger sobre dbo.Entrega usando inserted/deleted.
--- No descontar saldo desde el trigger: procedimiento de PA3 ya realiza ese cambio.
--- Completar definicion del trigger, tabla auxiliar si se usa, consultas de pruebas y evidencias.

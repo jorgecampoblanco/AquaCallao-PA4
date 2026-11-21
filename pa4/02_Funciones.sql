@@ -1,6 +1,0 @@
--- AQUACALLAO PA4 | PLANTILLA - PENDIENTE DE DESARROLLO
--- Responsable sugerido: Andy
--- Objetivo: Crear dbo.fn_PorcentajeDisponibleCisterna(@CisternaID INT) como función escalar y dbo.fn_EntregasPorSector(@Sector NVARCHAR(60)) como función de tabla; probar con y sin datos.
--- Base existente: AquaCallao | Usar tablas dbo.Cliente, dbo.Producto, dbo.Cisterna, dbo.CargaAgua y dbo.Entrega.
--- NO ES UNA SOLUCION TERMINADA NI HA SIDO EJECUTADA EN SSMS.
--- Completar: definicion del objeto, casos de prueba, resultado esperado/observado y justificacion.

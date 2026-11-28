@@ -13,23 +13,23 @@ La carpeta [pa4](pa4/) de la rama principal reúne los cinco módulos. El proyec
 | Farid Alessandro Mori Barrientos | [Seguridad (2)](pa4/04_Validación_seguridad%20%282%29.sql) y [Seguridad (1)](pa4/04_Validación_seguridad%20%281%29.sql) | Ejecutar primero (2) para crear usuarios y roles. (1) prueba sus permisos. |
 | Jorge Raúl Campoblanco Noriega | [05_PruebasIntegracion.sql](pa4/05_PruebasIntegracion.sql) | Carga, entregas, auditoría, saldo y permisos en una transacción de prueba |
 
-## Instalación y advertencias
-1. Usar una instancia **de práctica**, sin otra base existente llamada AquaCallao. Ejecutar pa3_base/01_CrearTablas.sql una sola vez: crea base, esquema y datos iniciales.
-2. Revisar antes de ejecutar los scripts de procedimientos en pa3_base/sql y el reporte pa3_base/06_reporte_sector.sql. Los archivos de PA3 incluyen también pruebas que insertan o actualizan registros; **no ejecutarlos en bloque sin revisar sus efectos**.
-3. Cada integrante trabaja con su copia local de SQL Server. Nunca publicar contraseñas, credenciales o datos personales.
-4. Para la integración, instalar los procedimientos de carga y entrega de PA3, las secciones de creación del trigger y las dos funciones, y la configuración de seguridad (2). Ejecutar 05_PruebasIntegracion.sql completo en una ventana nueva de SSMS.
-5. Ejecutar pruebas sobre datos reproducibles, documentar resultado esperado y observado y revisar interferencias de los nuevos triggers con pruebas anteriores.
+## Ejecución en SQL Server
 
-## Evaluación oficial (sesiones 11–13)
-- Trigger con inserted/deleted y pruebas (3 puntos).
-- Función escalar y de tipo tabla, uso y justificación (2 puntos).
-- Cursor, alternativa en conjuntos y evaluación crítica (2 puntos).
-- Usuarios, roles, permisos y seguridad, explicación de claves/certificados (3 puntos).
-- GitHub y README (4); video público de YouTube con cámaras prendidas (3); asistencia, participación y avances (3).
+1. Abrir AquaCallao en SQL Server Management Studio (SSMS). Si se parte de una instancia de práctica vacía, ejecutar `pa3_base/01_CrearTablas.sql` una vez. Conservar la base existente cuando ya contiene las tablas de PA3.
+2. Instalar las definiciones de los procedimientos de `pa3_base/sql/02_RegistrarCliente.sql`, `03_RegistrarCarga.sql` y `04_RegistrarEntrega.sql`. Seleccionar la definición de cada procedimiento hasta su GO final. Los bloques de demostración se ejecutan por separado.
+3. En `01_Triggers.sql` ejecutar desde USE AquaCallao hasta el GO anterior a la sección 3. Hacer lo mismo en `02_Funciones.sql`. Así quedan disponibles la auditoría y las dos funciones.
+4. En una instancia de práctica con permisos de administración, configurar los usuarios y roles una vez con el archivo de seguridad (2). Las pruebas individuales del archivo (1) incluyen operaciones denegadas y escrituras que permanecen en esa copia.
+5. Abrir `05_PruebasIntegracion.sql` en una ventana nueva. Debe haber un cliente y un producto activos, y la placa PA4-JORGE debe estar libre. Ejecutar el archivo completo con F5. El cursor se incluye en la misma transacción.
 
-## Entregables por completar
-- Adjuntar resultados observados, pantallazos y conclusiones.
-- Guardar las capturas de integración en evidencias/jorge/.
-- Enlace al video público de YouTube (PENDIENTE).
+## Pruebas y criterios de diseño
 
-**Fuentes del equipo:** repositorio AquaCallao-PA3 y enunciado PA4_30627_PROGRAMACION_AVANZADA_BD.pdf entregado por el profesor.
+- **Auditoría.** El trigger une inserted y deleted por EntregaID para registrar altas, cambios y bajas, incluso cuando una sentencia afecta varias entregas. La tabla de auditoría conserva los litros anteriores y nuevos.
+- **Funciones.** La función escalar devuelve el porcentaje de una cisterna. La función de tabla devuelve las entregas de un sector y permite filtrarlas o agruparlas en otra consulta.
+- **Cursores.** El cursor imprime una línea por cisterna. Para un reporte tabular preferimos el SELECT equivalente porque devuelve todas las filas en una consulta y evita recorrerlas explícitamente.
+- **Seguridad.** El operador registra movimientos, el gestor mantiene los catálogos y el auditor consulta los datos. Los usuarios reciben permisos a través de sus roles. Una contraseña autentica el inicio de sesión. Un certificado puede usarse para firmar un módulo y autorizar operaciones específicas mediante esa firma. El proyecto implementa autenticación y roles.
+- **Integración.** Sobre una cisterna de 2000 L, una carga de 1000 L y entregas de 300 y 33 L deben dejar 667 L (33,35 %). Se contrastan ambos registros de auditoría, el resumen del cursor y los permisos del auditor. Tras ROLLBACK, los cuatro conteos de filas de prueba deben ser cero.
+
+## Entregables
+
+**Video de YouTube**
+

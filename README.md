@@ -43,6 +43,8 @@ El objetivo de esta etapa es conservar el historial de las entregas, consultar e
 
 ## Evidencias y resultados de las pruebas
 
+[Se adjuntan las pruebas](evidencias/).
+
 **Permisos del auditor.** En la prueba 3, las consultas a `CargaAgua` y `Cliente` devolvieron una fila cada una. Al intentar cambiar el estado de la cisterna 1 a `Inactiva`, SQL Server devolvió el error 229 en la sentencia `UPDATE`. El auditor pudo leer los registros y el cambio de estado quedó bloqueado. [Consultar la prueba de permisos](pa4/04_Validación_seguridad%20%281%29.sql).
 
 **Comprobaciones de la prueba integrada.** La placa `PA4-JORGE` identifica la cisterna temporal. Estos son los resultados que se deben obtener al ejecutar el [script de integración](pa4/05_PruebasIntegracion.sql).

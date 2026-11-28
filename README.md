@@ -63,4 +63,4 @@ El identificador de entrega permite relacionar el reparto por sector con su hist
 
 La prueba del auditor confirmó la separación entre consulta y modificación. El uso de una transacción en la prueba integrada permite revisar una operación completa y retirar luego sus registros para repetirla sobre la misma base.
 
-**Video público de YouTube:** [PEGAR AQUÍ EL ENLACE]
+**Video público de YouTube:** https://youtu.be/hq3Pvbs45ok

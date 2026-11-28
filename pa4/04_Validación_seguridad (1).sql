@@ -22,12 +22,30 @@ GO
    ===================================================================== */
 EXECUTE AS USER = 'usr_gestor';
 
--- Acción PERMITIDA: Registrar un nuevo beneficiario
-INSERT INTO dbo.Cliente (Nombre, Documento, Sector, Activo)
-VALUES (N'Beneficiario Pachacútec 02', '00654321', N'Pachacútec', 1);
+-- Registrar un beneficiario con un documento de prueba disponible.
+DECLARE @DocumentoPrueba char(8);
+WHILE 1 = 1
+BEGIN
+    SET @DocumentoPrueba = RIGHT('00000000' + CONVERT(varchar(8),
+        ABS(CONVERT(bigint, CHECKSUM(NEWID()))) % 100000000), 8);
 
--- Acción DENEGADA (debe lanzar Msg 229: The DELETE permission was denied on the object 'Cliente'):
-DELETE FROM dbo.Cliente WHERE Documento = '00654321';
+    BEGIN TRY
+        INSERT INTO dbo.Cliente (Nombre, Documento, Sector, Activo)
+        VALUES (N'Beneficiario Pachacútec 02', @DocumentoPrueba, N'Pachacútec', 1);
+        BREAK;
+    END TRY
+    BEGIN CATCH
+        IF ERROR_NUMBER() NOT IN (2601, 2627)
+            THROW;
+        IF NOT EXISTS (SELECT 1 FROM dbo.Cliente WHERE Documento = @DocumentoPrueba)
+            THROW;
+    END CATCH;
+END;
+
+SELECT Nombre, Documento FROM dbo.Cliente WHERE Documento = @DocumentoPrueba;
+
+-- Acción DENEGADA: el gestor no puede eliminar al beneficiario registrado.
+DELETE FROM dbo.Cliente WHERE Documento = @DocumentoPrueba;
 
 REVERT;
 GO

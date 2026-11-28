@@ -1,4 +1,4 @@
--- AquaCallao PA4 | Jorge Campoblanco | Ejecutar completo en una ventana nueva de SSMS.
+-- AquaCallao PA4 | Jorge Campoblanco
 USE AquaCallao;
 GO
 SET NOCOUNT ON;
@@ -11,7 +11,7 @@ DECLARE @lectura int, @edicion int;
 BEGIN TRY
     BEGIN TRAN;
 
-    -- Una cisterna de prueba permite repetir el caso aunque ya haya movimientos de PA3.
+    -- Una cisterna de prueba permite repetir el caso aunque ya haya movimientos 
     INSERT dbo.Cisterna (Placa, CapacidadLitros, SaldoLitros, Estado)
     VALUES ('PA4-JORGE', 2000, 0, 'Operativa');
     SET @cisterna = SCOPE_IDENTITY();
